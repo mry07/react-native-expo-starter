@@ -1,12 +1,12 @@
 {
   "expo": {
-    "scheme": "expo-boiler",
-    "name": "expo-boiler",
-    "slug": "expo-boiler",
+    "scheme": "expo-boilerplate",
+    "name": "expo-boilerplate",
+    "slug": "expo-boilerplate",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
+    "userInterfaceStyle": "automatic",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",

@@ -1,6 +1,6 @@
 import React from "react";
 import * as Size from "../../constant/size";
-import * as Colors from "../../utils/colors";
+import * as Colors from "../../utility/colors";
 import { MaterialIndicator } from "react-native-indicators";
 import { View, Modal, StyleSheet } from "react-native";
 

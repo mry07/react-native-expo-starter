@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import React from "react";
 import { Props } from "./Input.types";
-import * as Colors from "../../../utils/colors";
+import * as Colors from "../../../utility/colors";
 import Text from "../text/Text";
 
 export const INPUT_HEIGHT = 44;

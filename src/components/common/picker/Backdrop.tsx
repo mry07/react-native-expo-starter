@@ -5,7 +5,7 @@ import Animated, {
   interpolate,
   useAnimatedStyle,
 } from "react-native-reanimated";
-import * as Colors from "../../../utils/colors";
+import * as Colors from "../../../utility/colors";
 import { Pressable, StyleSheet } from "react-native";
 import { BackdropProps } from "./Picker.types";
 

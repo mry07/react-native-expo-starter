@@ -6,7 +6,7 @@ import {
   ViewStyle,
   StyleSheet,
 } from "react-native";
-import * as Colors from "../../../utils/colors";
+import * as Colors from "../../../utility/colors";
 import Text from "../text/Text";
 import { useDynamicLayout } from "./Button.hooks";
 import { Options, Props } from "./Button.types";

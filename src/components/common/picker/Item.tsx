@@ -2,7 +2,7 @@ import { StyleProp, ViewStyle, Pressable, StyleSheet } from "react-native";
 import React from "react";
 import { Data, ItemProps } from "./Picker.types";
 import Text from "../text/Text";
-import * as Colors from "../../../utils/colors";
+import * as Colors from "../../../utility/colors";
 
 const Item = React.memo<ItemProps>(({ item, index, onPick }) => {
   const selectedStyle: StyleProp<ViewStyle> = [

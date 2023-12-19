@@ -3495,7 +3495,7 @@ expo-modules-core@1.5.12:
     compare-versions "^3.4.0"
     invariant "^2.2.4"
 
-expo-router@^2.0.14:
+expo-router@^2.0.0:
   version "2.0.14"
   resolved "https://registry.yarnpkg.com/expo-router/-/expo-router-2.0.14.tgz#6c05fc9620d3d3e94dfffdd013ad5dace1bc69e0"
   integrity sha512-F5dP4WMe+zQLzlGSbC+NT9/67FGgwmUCJuPGD4BkK0eRt0uga+y53vQ59m5MCOebqE0N9Ukr/Jz8Num16iGqZA==
@@ -3513,7 +3513,7 @@ expo-router@^2.0.14:
     schema-utils "^4.0.1"
     url "^0.11.0"
 
-expo-splash-screen@~0.20.2:
+expo-splash-screen@~0.20.2, expo-splash-screen@~0.20.5:
   version "0.20.5"
   resolved "https://registry.yarnpkg.com/expo-splash-screen/-/expo-splash-screen-0.20.5.tgz#ebeba3e3977606830f74f506ab2cc25042bb7efd"
   integrity sha512-nTALYdjHpeEA30rdOWSguxn72ctv8WM8ptuUgpfRgsWyn4i6rwYds/rBXisX69XO5fg+XjHAQqijGx/b28+3tg==
@@ -5863,10 +5863,10 @@ react-native-web@~0.19.6:
     postcss-value-parser "^4.2.0"
     styleq "^0.1.3"
 
-react-native-webview@^13.6.3:
-  version "13.6.3"
-  resolved "https://registry.yarnpkg.com/react-native-webview/-/react-native-webview-13.6.3.tgz#f3d26e942ef5cc5a07547f2e47903aa81a68e25e"
-  integrity sha512-IApO0JSj0uAWsBGKWagyfgDYoX29piiMYLmkHtRjKeL1rIVjLoR/bMe7KJ/0X47y86b//a6u3cYQtphyay+F2A==
+react-native-webview@13.2.2:
+  version "13.2.2"
+  resolved "https://registry.yarnpkg.com/react-native-webview/-/react-native-webview-13.2.2.tgz#06b04db8e1f4ed57a9dc92f4094aa0e41271b89b"
+  integrity sha512-uT70y2GUqQzaj2RwRb/QuKRdXeDjXM6oN3DdPqYQlOOMFTCT8r62fybyjVVRoik8io+KLa5KnmuSoS5B2O1BmA==
   dependencies:
     escape-string-regexp "2.0.0"
     invariant "2.2.4"

@@ -1,8 +1,9 @@
 import React from "react";
 import { AuthProvider } from "./auth";
 
-const Context = (...providers: any[]) => {
+const Context = (...data: any[]) => {
   return ({ children }: { children: React.ReactNode }) => {
+    const providers = [...data];
     const provider = providers.shift();
 
     if (!provider) {

@@ -1,4 +1,6 @@
+import Text from "../text/Text";
 import React from "react";
+import * as Colors from "../../../utility/colors";
 import {
   View,
   Pressable,
@@ -6,10 +8,8 @@ import {
   ViewStyle,
   StyleSheet,
 } from "react-native";
-import * as Colors from "../../../utility/colors";
-import Text from "../text/Text";
-import { useDynamicLayout } from "./Button.hooks";
 import { Options, Props } from "./Button.types";
+import { useDynamicLayout } from "./Button.hooks";
 
 const Button = React.forwardRef<View, Props>(
   (
@@ -27,12 +27,12 @@ const Button = React.forwardRef<View, Props>(
     ref
   ) => {
     const defaultOptions: Options = {
+      titleWeight: "400",
       titleColor: outline
         ? color
         : Colors.isBright(color)
         ? Colors.black()
         : Colors.white(),
-      titleWeight: "400",
     };
 
     options = { ...defaultOptions, ...options };
@@ -59,6 +59,7 @@ const Button = React.forwardRef<View, Props>(
             {iconLeft(dynamicLayout.iconSize)}
           </View>
         )}
+
         <Text
           size={dynamicLayout.titleSize}
           weight={options.titleWeight}
@@ -67,6 +68,7 @@ const Button = React.forwardRef<View, Props>(
         >
           {title}
         </Text>
+
         {iconRight && (
           <View style={dynamicLayout.styles.iconRight}>
             {iconRight(dynamicLayout.iconSize)}
@@ -93,87 +95,3 @@ Button.defaultProps = {
 };
 
 export default Button;
-
-// import {
-//   View,
-//   Pressable,
-//   StyleProp,
-//   ViewStyle,
-//   StyleSheet,
-// } from "react-native";
-// import React from "react";
-// import { Options, Props } from "./Button.types";
-// import { useDynamicStyles } from "./Button.hooks";
-// import * as Colors from "../../../utils/colors";
-// import Text from "../text/Text";
-
-// const Button = React.forwardRef<View, Props>(
-//   (
-//     { style, title, size, color, options, iconLeft, iconRight, ...props },
-//     ref
-//   ) => {
-//     const defaultOptions: Options = {
-//       titleColor: Colors.white(),
-//       titleWeight: "400",
-//     };
-
-//     const finalOptions = { ...defaultOptions, ...options };
-
-//     const dynamicStyles = useDynamicStyles({
-//       title,
-//       size,
-//       options: finalOptions,
-//       iconLeft,
-//       iconRight,
-//     });
-
-//     const containerStyle: StyleProp<ViewStyle> = [
-//       styles.container,
-//       dynamicStyles.containerStyle,
-//       { backgroundColor: color },
-//       style,
-//     ];
-
-//     return (
-//       <Pressable {...props} ref={ref} style={containerStyle}>
-//         {iconLeft && (
-//           <View style={dynamicStyles.iconLeftStyle}>
-//             {iconLeft(dynamicStyles.iconSize)}
-//           </View>
-//         )}
-//         <Text
-//           style={styles.title}
-//           size={dynamicStyles.titleSize}
-//           color={finalOptions.titleColor}
-//           weight={finalOptions.titleWeight}
-//         >
-//           {title}
-//         </Text>
-//         {iconRight && (
-//           <View style={dynamicStyles.iconRightStyle}>
-//             {iconRight(dynamicStyles.iconSize)}
-//           </View>
-//         )}
-//       </Pressable>
-//     );
-//   }
-// );
-
-// const styles = StyleSheet.create({
-//   container: {
-//     backgroundColor: Colors.grey(undefined, "900"),
-//     justifyContent: "center",
-//     alignItems: "center",
-//     flexDirection: "row",
-//   },
-//   title: {
-//     textAlign: "center",
-//   },
-// });
-
-// Button.defaultProps = {
-//   size: "medium",
-//   options: {},
-// };
-
-// export default Button;

@@ -1,7 +1,7 @@
 import React from "react";
-import { Props } from "./Text.types";
-import { StyleProp, Text as RNText, TextStyle } from "react-native";
 import * as Colors from "../../../utility/colors";
+import { Props } from "./Text.types";
+import { StyleProp, TextStyle, Text as RNText } from "react-native";
 
 const Text = React.forwardRef<RNText, Props>(
   (

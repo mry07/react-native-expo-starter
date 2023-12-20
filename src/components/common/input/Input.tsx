@@ -1,16 +1,16 @@
+import React from "react";
+import Text from "../text/Text";
+import * as Colors from "../../../utility/colors";
+import { Props } from "./Input.types";
 import {
   View,
-  StyleSheet,
   TextInput,
   StyleProp,
   TextStyle,
   Pressable,
   ViewStyle,
+  StyleSheet,
 } from "react-native";
-import React from "react";
-import { Props } from "./Input.types";
-import * as Colors from "../../../utility/colors";
-import Text from "../text/Text";
 
 export const INPUT_HEIGHT = 44;
 
@@ -45,12 +45,6 @@ const Input = React.forwardRef<TextInput, Props>(
       [font, variant, weight]
     );
 
-    React.useImperativeHandle(ref, () => inputRef.current, []);
-
-    const handleInputPress = () => {
-      onPress ? onPress() : inputRef.current.focus();
-    };
-
     const newWrapperStyle: StyleProp<ViewStyle> = [
       styles.wrapper,
       Boolean(iconLeft) && {
@@ -71,6 +65,12 @@ const Input = React.forwardRef<TextInput, Props>(
       },
       inputStyle,
     ];
+
+    React.useImperativeHandle(ref, () => inputRef.current, []);
+
+    const handleInputPress = () => {
+      onPress ? onPress() : inputRef.current.focus();
+    };
 
     return (
       <View style={containerStyle}>

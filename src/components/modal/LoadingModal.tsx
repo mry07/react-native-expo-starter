@@ -1,5 +1,4 @@
 import React from "react";
-import * as Size from "../../constant/size";
 import * as Colors from "../../utility/colors";
 import { MaterialIndicator } from "react-native-indicators";
 import { View, Modal, StyleSheet } from "react-native";
@@ -13,7 +12,6 @@ const LoadingModal = ({ visible }) => {
       statusBarTranslucent
     >
       <View style={styles.container}>
-        <View style={styles.backdrop} />
         <View style={styles.loading}>
           <MaterialIndicator size={45} />
         </View>
@@ -27,11 +25,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-  },
-  backdrop: {
-    position: "absolute",
-    width: Size.SCREEN_WIDTH,
-    height: Size.SCREEN_HEIGHT,
     backgroundColor: Colors.black(0.5),
   },
   loading: {

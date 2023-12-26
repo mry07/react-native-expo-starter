@@ -1,10 +1,12 @@
 import React from "react";
 import * as Colors from "../../../utility/colors";
 import Animated, {
-  Easing,
+  interpolate,
+  interpolateColor,
   useAnimatedStyle,
-  withTiming,
 } from "react-native-reanimated";
+import { Props } from "./Switch.types";
+import { useHandler } from "./Switch.hooks";
 import { Pressable, StyleSheet } from "react-native";
 
 const SWITCH_WIDTH = 50;
@@ -15,31 +17,57 @@ const THUMB_SIZE = SWITCH_HEIGHT - SWITCH_PADDING * 2;
 const THUMB_RADIUS = THUMB_SIZE / 2;
 const THUMB_TRANS_X = SWITCH_WIDTH - SWITCH_HEIGHT;
 
-const Switch = () => {
-  const [active, setActive] = React.useState(false);
+const Switch = (props: Props) => {
+  const {
+    value,
+    trackActiveColor = Colors.black(0.8),
+    trackInactiveColor = Colors.black(0.8),
+    thumbActiveColor = Colors.white(),
+    thumbInactiveColor = Colors.white(),
+    onChangeValue,
+  } = props;
+
+  const [setActive, { progress }] = useHandler({
+    value,
+    onChangeValue,
+  });
+
+  const trackStyles = useAnimatedStyle(() => {
+    return {
+      backgroundColor: interpolateColor(
+        progress.value,
+        [0, 1],
+        [trackInactiveColor, trackActiveColor]
+      ),
+    };
+  }, [trackActiveColor, trackInactiveColor]);
 
   const thumbStyles = useAnimatedStyle(() => {
     return {
+      backgroundColor: interpolateColor(
+        progress.value,
+        [0, 1],
+        [thumbInactiveColor, thumbActiveColor]
+      ),
       transform: [
         {
-          translateX: withTiming(active ? THUMB_TRANS_X : 0, {
-            easing: Easing.inOut(Easing.exp),
-          }),
+          translateX: interpolate(progress.value, [0, 1], [0, THUMB_TRANS_X]),
         },
       ],
     };
-  }, [active]);
+  }, [thumbActiveColor, thumbInactiveColor]);
 
   return (
-    <Pressable style={styles.container} onPress={() => setActive(!active)}>
-      <Animated.View style={[styles.thumb, thumbStyles]} />
+    <Pressable onPress={() => setActive((s) => !s)}>
+      <Animated.View style={[styles.track, trackStyles]}>
+        <Animated.View style={[styles.thumb, thumbStyles]} />
+      </Animated.View>
     </Pressable>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    backgroundColor: Colors.black(0.8),
+  track: {
     width: SWITCH_WIDTH,
     height: SWITCH_HEIGHT,
     borderRadius: SWITCH_RADIUS,
@@ -50,7 +78,6 @@ const styles = StyleSheet.create({
     width: THUMB_SIZE,
     height: THUMB_SIZE,
     borderRadius: THUMB_RADIUS,
-    backgroundColor: Colors.white(),
   },
 });
 

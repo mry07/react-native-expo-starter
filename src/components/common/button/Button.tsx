@@ -1,6 +1,8 @@
 import Text from "../text/Text";
 import React from "react";
 import * as Colors from "../../../utility/colors";
+import { Props } from "./Button.types";
+import { useDynamicLayout } from "./Button.hooks";
 import {
   View,
   Pressable,
@@ -8,8 +10,6 @@ import {
   ViewStyle,
   StyleSheet,
 } from "react-native";
-import { Options, Props } from "./Button.types";
-import { useDynamicLayout } from "./Button.hooks";
 
 const Button = React.forwardRef<View, Props>(
   (
@@ -26,16 +26,16 @@ const Button = React.forwardRef<View, Props>(
     },
     ref
   ) => {
-    const defaultOptions: Options = {
+    options = {
       titleWeight: "400",
       titleColor: outline
         ? color
         : Colors.isBright(color)
         ? Colors.black()
         : Colors.white(),
-    };
 
-    options = { ...defaultOptions, ...options };
+      ...options,
+    };
 
     const dynamicLayout = useDynamicLayout({
       title,
@@ -53,7 +53,14 @@ const Button = React.forwardRef<View, Props>(
     ];
 
     return (
-      <Pressable ref={ref} style={containerStyle} {...props}>
+      <Pressable
+        ref={ref}
+        style={containerStyle}
+        android_ripple={{
+          color: Colors.grey(undefined, "400"),
+        }}
+        {...props}
+      >
         {iconLeft && (
           <View style={dynamicLayout.styles.iconLeft}>
             {iconLeft(dynamicLayout.iconSize)}
@@ -90,7 +97,7 @@ const styles = StyleSheet.create({
 
 Button.defaultProps = {
   size: "medium",
-  color: Colors.grey(undefined, "900"),
+  color: Colors.black(0.85),
   outline: false,
 };
 

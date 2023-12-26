@@ -1,36 +1,40 @@
 import React from "react";
 import * as Colors from "../../../utility/colors";
 import { Props } from "./Text.types";
-import { StyleProp, TextStyle, Text as RNText } from "react-native";
+import { useFontFamily } from "./Text.hooks";
+import { StyleProp, TextStyle, Text as RNText, StyleSheet } from "react-native";
 
 const Text = React.forwardRef<RNText, Props>(
   (
     { style, size, color, font, align, weight, variant, children, ...props },
     ref
   ) => {
-    const fontFamily = React.useMemo(
-      () => `${font}-${weight}-${variant}`,
-      [font, variant, weight]
-    );
+    const fontFamily = useFontFamily({ font, variant, weight });
 
-    const textStyle: StyleProp<TextStyle> = [
+    const textStyles: StyleProp<TextStyle> = [
+      styles.text,
       {
         color,
         fontFamily,
         fontSize: size,
         textAlign: align,
-        includeFontPadding: false,
       },
       style,
     ];
 
     return (
-      <RNText {...props} ref={ref} style={textStyle}>
+      <RNText {...props} ref={ref} style={textStyles}>
         {children}
       </RNText>
     );
   }
 );
+
+const styles = StyleSheet.create({
+  text: {
+    includeFontPadding: false,
+  },
+});
 
 Text.defaultProps = {
   size: 14,

@@ -25,3 +25,5 @@ export type Props = TextProps & {
   weight?: Weight;
   variant?: Variant;
 };
+
+export type UseFontFamilyParams = Pick<Props, "font" | "weight" | "variant">;

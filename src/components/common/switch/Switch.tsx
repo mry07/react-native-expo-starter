@@ -17,17 +17,15 @@ const THUMB_SIZE = SWITCH_HEIGHT - SWITCH_PADDING * 2;
 const THUMB_RADIUS = THUMB_SIZE / 2;
 const THUMB_TRANS_X = SWITCH_WIDTH - SWITCH_HEIGHT;
 
-const Switch = (props: Props) => {
-  const {
-    value,
-    trackActiveColor = Colors.black(0.8),
-    trackInactiveColor = Colors.black(0.8),
-    thumbActiveColor = Colors.white(),
-    thumbInactiveColor = Colors.white(),
-    onChangeValue,
-  } = props;
-
-  const [setActive, { progress }] = useHandler({
+const Switch = ({
+  value,
+  trackActiveColor = Colors.black(0.85),
+  trackInactiveColor = Colors.black(0.85),
+  thumbActiveColor = Colors.white(),
+  thumbInactiveColor = Colors.white(),
+  onChangeValue,
+}: Props) => {
+  const { progress, setActive } = useHandler({
     value,
     onChangeValue,
   });

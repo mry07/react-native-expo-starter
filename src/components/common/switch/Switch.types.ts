@@ -12,9 +12,7 @@ export type Props = {
 
 export type UseHandlerParams = Pick<Props, "value" | "onChangeValue">;
 
-export type UseHandlerResult = [
-  React.Dispatch<React.SetStateAction<boolean>>,
-  {
-    progress: Animated.SharedValue<number>;
-  }
-];
+export type UseHandlerResult = {
+  progress: Animated.SharedValue<number>;
+  setActive: React.Dispatch<React.SetStateAction<boolean>>;
+};

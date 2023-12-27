@@ -21,5 +21,5 @@ export const useHandler = (params: UseHandlerParams): UseHandlerResult => {
     }
   }, [active]);
 
-  return [setActive, { progress }];
+  return { progress, setActive };
 };

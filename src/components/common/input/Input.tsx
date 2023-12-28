@@ -39,8 +39,8 @@ const Input = React.forwardRef<TextInput, Props>(
     },
     ref
   ) => {
-    const fontFamily = useFontFamily({ font, variant, weight });
     const inputRef = React.useRef<TextInput>(null);
+    const fontFamily = useFontFamily({ font, variant, weight });
 
     const newWrapperStyle: StyleProp<ViewStyle> = [
       styles.wrapper,
@@ -70,7 +70,7 @@ const Input = React.forwardRef<TextInput, Props>(
     };
 
     return (
-      <View style={containerStyle}>
+      <View style={[styles.container, containerStyle]}>
         {label && (
           <Text
             style={styles.label}
@@ -132,6 +132,9 @@ const Input = React.forwardRef<TextInput, Props>(
 );
 
 const styles = StyleSheet.create({
+  container: {
+    alignSelf: "stretch",
+  },
   wrapper: {
     flexDirection: "row",
     borderWidth: 1.5,

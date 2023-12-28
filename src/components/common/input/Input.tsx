@@ -2,6 +2,7 @@ import React from "react";
 import Text from "../text/Text";
 import * as Colors from "../../../utility/colors";
 import { Props } from "./Input.types";
+import { useFontFamily } from "../text/Text.hooks";
 import {
   View,
   TextInput,
@@ -38,12 +39,8 @@ const Input = React.forwardRef<TextInput, Props>(
     },
     ref
   ) => {
+    const fontFamily = useFontFamily({ font, variant, weight });
     const inputRef = React.useRef<TextInput>(null);
-
-    const fontFamily = React.useMemo(
-      () => `${font}-${weight}-${variant}`,
-      [font, variant, weight]
-    );
 
     const newWrapperStyle: StyleProp<ViewStyle> = [
       styles.wrapper,
@@ -69,7 +66,7 @@ const Input = React.forwardRef<TextInput, Props>(
     React.useImperativeHandle(ref, () => inputRef.current, []);
 
     const handleInputPress = () => {
-      onPress ? onPress() : inputRef.current.focus();
+      Boolean(onPress) ? onPress() : inputRef.current.focus();
     };
 
     return (

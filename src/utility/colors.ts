@@ -146,7 +146,6 @@ export const getBrightness = (color) => {
 
 export const isBright = (color) => {
   const brightness = getBrightness(color);
-
   return brightness > 128;
 };
 

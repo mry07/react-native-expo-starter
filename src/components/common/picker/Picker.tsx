@@ -6,32 +6,21 @@ import ListEmpty from "./ListEmpty";
 import { Props } from "./Picker.types";
 import { StyleSheet } from "react-native";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+import { useHandler, useSnapPoints } from "./Picker.hooks";
 import {
-  BottomSheetFlatList,
   BottomSheetModal,
+  BottomSheetFlatList,
   BottomSheetModalProvider,
 } from "@gorhom/bottom-sheet";
 
 const Picker = ({ data, value, onChangeValue, ...props }: Props) => {
-  const [newData, setNewData] = React.useState([]);
-
   const bottomSheetModalRef = React.useRef<BottomSheetModal>(null);
-
-  const snapPoints = React.useMemo(() => {
-    const result = ["25%"];
-    if (data.length > 0) result.push("50%");
-
-    return result;
-  }, [data]);
-
-  React.useEffect(() => {
-    setNewData(
-      data.map((e) => ({
-        ...e,
-        selected: e.value === value,
-      }))
-    );
-  }, [data, value]);
+  const snapPoints = useSnapPoints(data);
+  const { selectedLabel, manipulateData, pick } = useHandler({
+    data,
+    value,
+    onChangeValue,
+  });
 
   const handlePresent = React.useCallback(() => {
     bottomSheetModalRef.current?.present();
@@ -41,32 +30,11 @@ const Picker = ({ data, value, onChangeValue, ...props }: Props) => {
     bottomSheetModalRef.current?.dismiss();
   }, []);
 
-  const handlePick = React.useCallback(
-    (index: number) => {
-      setNewData((s) => {
-        return s.map((e, i) => {
-          if (i !== index) {
-            if (e.selected === false) {
-              return e;
-            }
-
-            return { ...e, selected: false };
-          }
-
-          return { ...e, selected: true };
-        });
-      });
-
-      onChangeValue?.(data[index].value);
-    },
-    [data]
-  );
-
   return (
     <BottomSheetModalProvider>
       <Input
         {...props}
-        value={newData.find((e) => e.selected)?.label}
+        value={selectedLabel}
         onPress={handlePresent}
         iconRight={({ size, color }) => (
           <FontAwesomeIcon
@@ -87,7 +55,7 @@ const Picker = ({ data, value, onChangeValue, ...props }: Props) => {
       >
         <BottomSheetFlatList
           contentContainerStyle={styles.content}
-          data={newData}
+          data={manipulateData}
           initialNumToRender={10}
           windowSize={2}
           maxToRenderPerBatch={10}
@@ -97,7 +65,7 @@ const Picker = ({ data, value, onChangeValue, ...props }: Props) => {
             offset: 50 * index,
             index,
           })}
-          renderItem={(props) => <Item {...props} onPick={handlePick} />}
+          renderItem={(props) => <Item {...props} onPick={pick} />}
           ListEmptyComponent={<ListEmpty />}
         />
       </BottomSheetModal>

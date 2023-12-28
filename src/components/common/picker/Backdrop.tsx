@@ -1,16 +1,14 @@
 import React from "react";
-import { BottomSheetBackdropProps } from "@gorhom/bottom-sheet";
+import * as Colors from "../../../utility/colors";
 import Animated, {
   Extrapolate,
   interpolate,
   useAnimatedStyle,
 } from "react-native-reanimated";
-import * as Colors from "../../../utility/colors";
-import { Pressable, StyleSheet } from "react-native";
 import { BackdropProps } from "./Picker.types";
+import { Pressable, StyleSheet } from "react-native";
 
-const Backdrop = ({ animatedIndex, style, onPress }: BackdropProps) => {
-  // animated variables
+const Backdrop = ({ style, animatedIndex, onPress }: BackdropProps) => {
   const containerAnimatedStyle = useAnimatedStyle(() => ({
     opacity: interpolate(
       animatedIndex.value,
@@ -20,15 +18,20 @@ const Backdrop = ({ animatedIndex, style, onPress }: BackdropProps) => {
     ),
   }));
 
-  // styles
-  const containerStyle = React.useMemo(
-    () => [style, { backgroundColor: Colors.black() }, containerAnimatedStyle],
+  const containerStyles = React.useMemo(
+    () => [
+      style,
+      {
+        backgroundColor: Colors.black(),
+      },
+      containerAnimatedStyle,
+    ],
     [style, containerAnimatedStyle]
   );
 
   return (
-    <Animated.View style={containerStyle}>
-      <Pressable style={styles.press} onPress={() => onPress()} />
+    <Animated.View style={containerStyles}>
+      <Pressable style={styles.press} onPress={onPress} />
     </Animated.View>
   );
 };

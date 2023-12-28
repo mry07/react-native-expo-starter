@@ -24,3 +24,10 @@ export type Props = Omit<
   value?: string;
   onChangeValue?: (value: string) => void;
 };
+
+export type UseHandlerParams = Pick<Props, "data" | "value" | "onChangeValue">;
+
+export type UseHandlerResult = {
+  manipulateData: Data[];
+  pick: (index: number) => void;
+};

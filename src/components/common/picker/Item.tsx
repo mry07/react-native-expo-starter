@@ -4,7 +4,7 @@ import * as Colors from "../../../utility/colors";
 import { ItemProps } from "./Picker.types";
 import { StyleProp, ViewStyle, Pressable, StyleSheet } from "react-native";
 
-const Item = React.memo<ItemProps>(({ item, index, onPick }) => {
+const Item = React.memo<ItemProps>(({ item, index, onSelect }) => {
   const selectedStyle: StyleProp<ViewStyle> = [
     styles.container,
     item.selected && {
@@ -13,7 +13,7 @@ const Item = React.memo<ItemProps>(({ item, index, onPick }) => {
   ];
 
   return (
-    <Pressable style={selectedStyle} onPress={() => onPick(index)}>
+    <Pressable style={selectedStyle} onPress={() => onSelect(index)}>
       <Text weight="500" color={item.selected ? Colors.white() : undefined}>
         {item.label}
       </Text>

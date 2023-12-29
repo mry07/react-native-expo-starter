@@ -9,7 +9,7 @@ export type Data = {
 };
 
 export type ItemProps = ListRenderItemInfo<Data> & {
-  onPick: (index: number) => void;
+  onSelect: (index: number) => void;
 };
 
 export type BackdropProps = BottomSheetBackdropProps & {
@@ -28,6 +28,7 @@ export type Props = Omit<
 export type UseHandlerParams = Pick<Props, "data" | "value" | "onChangeValue">;
 
 export type UseHandlerResult = {
+  selectedLabel: string;
   manipulateData: Data[];
-  pick: (index: number) => void;
+  select: (index: number) => void;
 };

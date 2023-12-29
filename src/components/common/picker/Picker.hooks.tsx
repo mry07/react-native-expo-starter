@@ -1,5 +1,5 @@
 import React from "react";
-import { Data, UseHandlerParams } from "./Picker.types";
+import { Data, UseHandlerParams, UseHandlerResult } from "./Picker.types";
 
 export const useSnapPoints = (data: Data[]) => {
   const result = React.useMemo(() => {
@@ -16,7 +16,7 @@ export const useHandler = ({
   data,
   value,
   onChangeValue,
-}: UseHandlerParams) => {
+}: UseHandlerParams): UseHandlerResult => {
   const [manipulateData, setManipulateData] = React.useState([]);
 
   const selectedLabel = React.useMemo(
@@ -28,7 +28,7 @@ export const useHandler = ({
     setManipulateData(data.map((e) => ({ ...e, selected: e.value === value })));
   }, [data, value]);
 
-  const pick = React.useCallback(
+  const select = React.useCallback(
     (index) => {
       setManipulateData((s) => {
         return s.map((e, i) => {
@@ -49,5 +49,5 @@ export const useHandler = ({
     [data]
   );
 
-  return { selectedLabel, manipulateData, pick };
+  return { selectedLabel, manipulateData, select };
 };

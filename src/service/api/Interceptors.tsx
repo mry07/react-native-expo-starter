@@ -1,27 +1,8 @@
-import React from "react";
-import { api } from ".";
+import axiosInstance from "./axios-instance";
 import { ApiRequestError, ApiResponseError } from "../../utility/exception";
 import { AxiosResponse, InternalAxiosRequestConfig } from "axios";
 
 const Interceptors = ({ children }) => {
-  const [isReady, setIsReady] = React.useState(false);
-
-  /** **************************************** */
-
-  // effect
-
-  React.useEffect(() => {
-    const request = api.interceptors.request.use(prerequest, errorPrerequest);
-    const response = api.interceptors.response.use(tests, errorTests);
-
-    setIsReady(true);
-
-    return () => {
-      api.interceptors.request.eject(request);
-      api.interceptors.response.eject(response);
-    };
-  }, []);
-
   /** **************************************** */
 
   // function
@@ -105,10 +86,8 @@ const Interceptors = ({ children }) => {
 
   // render
 
-  // make sure that the interceptors have been defined
-  if (!isReady) {
-    return null;
-  }
+  axiosInstance.interceptors.request.use(prerequest, errorPrerequest);
+  axiosInstance.interceptors.response.use(tests, errorTests);
 
   return children;
 };

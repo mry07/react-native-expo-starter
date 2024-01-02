@@ -144,7 +144,7 @@ const styles = StyleSheet.create({
   },
   input: {
     includeFontPadding: false,
-    height: INPUT_HEIGHT,
+    minHeight: INPUT_HEIGHT,
     flex: 1,
   },
   iconLeft: {

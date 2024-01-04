@@ -1,8 +1,8 @@
-import axiosInstance from "./axios-instance";
-import { ApiRequestError, ApiResponseError } from "../../utility/exception";
+import jsonPlaceholderApi from "../jsonPlaceholderApi";
 import { AxiosResponse, InternalAxiosRequestConfig } from "axios";
+import { ApiRequestError, ApiResponseError } from "../../../utility/exception";
 
-const Interceptors = ({ children }) => {
+const JsonPlaceholderInterceptor = ({ children }) => {
   /** **************************************** */
 
   // function
@@ -86,10 +86,10 @@ const Interceptors = ({ children }) => {
 
   // render
 
-  axiosInstance.interceptors.request.use(prerequest, errorPrerequest);
-  axiosInstance.interceptors.response.use(tests, errorTests);
+  jsonPlaceholderApi.interceptors.request.use(prerequest, errorPrerequest);
+  jsonPlaceholderApi.interceptors.response.use(tests, errorTests);
 
   return children;
 };
 
-export default Interceptors;
+export default JsonPlaceholderInterceptor;

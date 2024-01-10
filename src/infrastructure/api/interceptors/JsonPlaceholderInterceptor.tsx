@@ -1,6 +1,6 @@
-import jsonPlaceholderApi from "../json-placeholder-api";
-import { AxiosResponse, InternalAxiosRequestConfig } from "axios";
+import { jsonPlaceholderApi } from "../json-placeholder-api";
 import { ApiRequestError, ApiResponseError } from "../../../utility/exception";
+import { AxiosResponse, InternalAxiosRequestConfig } from "axios";
 
 const JsonPlaceholderInterceptor = ({ children }) => {
   /** **************************************** */

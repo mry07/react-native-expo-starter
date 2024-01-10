@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const jsonPlaceholderApi = axios.create({
+export const jsonPlaceholderApi = axios.create({
   baseURL: "jsonplaceholder.typicode.com",
   headers: {
     Accept: "application/json",
@@ -9,5 +9,3 @@ const jsonPlaceholderApi = axios.create({
 });
 
 export type JsonPlaceholderApi = typeof jsonPlaceholderApi;
-
-export default jsonPlaceholderApi;

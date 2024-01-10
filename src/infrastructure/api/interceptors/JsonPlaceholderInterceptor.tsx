@@ -1,4 +1,4 @@
-import jsonPlaceholderApi from "../jsonPlaceholderApi";
+import jsonPlaceholderApi from "../json-placeholder-api";
 import { AxiosResponse, InternalAxiosRequestConfig } from "axios";
 import { ApiRequestError, ApiResponseError } from "../../../utility/exception";
 

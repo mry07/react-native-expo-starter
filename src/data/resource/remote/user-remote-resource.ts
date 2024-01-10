@@ -1,19 +1,7 @@
-import UserEntity from "../../../core/entities/user-entity";
-import { JsonPlaceholderApiTypes } from "../../../infrastructure/api/json-placeholder-api";
+import UserEntity from "../../../core/entities/user-entity"
 
-const UserRemoteResource = (jsonPlaceholderApi: JsonPlaceholderApiTypes) => {
-  return {
-    getUsers: async (): Promise<UserEntity[]> => {
-      try {
-        const { data } = await jsonPlaceholderApi.get("/users");
-        return data;
-      } catch (error) {
-        throw error;
-      }
-    },
-  };
-};
+type UserRemoteResource = {
+    getUsers: () => Promise<UserEntity[]>
+}
 
-export type UserRemoteResourceTypes = ReturnType<typeof UserRemoteResource>;
-
-export default UserRemoteResource;
+export default UserRemoteResource

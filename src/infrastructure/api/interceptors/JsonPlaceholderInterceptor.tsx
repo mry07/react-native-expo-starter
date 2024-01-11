@@ -16,7 +16,9 @@ const JsonPlaceholderInterceptor = ({ children }) => {
           config.baseURL +
           config.url +
           "\n\t" +
-          JSON.stringify(config.data)
+          (config.params ? JSON.stringify(config.params) : "'no params'") +
+          "\n\t" +
+          (config.data ? JSON.stringify(config.data) : "'no body'")
       );
       console.log("");
     }

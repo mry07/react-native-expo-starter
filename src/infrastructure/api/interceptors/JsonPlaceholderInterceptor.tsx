@@ -87,7 +87,6 @@ const JsonPlaceholderInterceptor = ({ children }) => {
   /** **************************************** */
 
   // render
-
   jsonPlaceholderApi.interceptors.request.use(prerequest, errorPrerequest);
   jsonPlaceholderApi.interceptors.response.use(tests, errorTests);
 

@@ -1,5 +1,3 @@
-import { AxiosInstance } from "axios";
-
 declare global {
   interface My {
     loading?: (value: boolean) => void;
@@ -7,3 +5,5 @@ declare global {
 
   var my: My;
 }
+
+export {};

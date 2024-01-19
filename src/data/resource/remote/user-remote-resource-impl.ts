@@ -1,9 +1,9 @@
 import UserEntity from "../../../core/entities/user-entity";
 import UserRemoteResource from "./user-remote-resource";
-import { JsonPlaceholderApi } from "../../../infrastructure/api/json-placeholder-api";
+import { JsonPlaceholderInstance } from "../../../infrastructure/api/json-placeholder-api";
 
 const UserRemoteResourceImpl = (
-  jsonPlaceholderApi: JsonPlaceholderApi
+  jsonPlaceholderApi: JsonPlaceholderInstance
 ): UserRemoteResource => {
   return {
     getUsers: async (): Promise<UserEntity[]> => {

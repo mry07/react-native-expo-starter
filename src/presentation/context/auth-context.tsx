@@ -1,12 +1,6 @@
 import React from "react";
+import { ContextProps } from "./auth-context.types";
 import { getStorage, setStorage } from "../../utility/storage";
-
-type ContextProps = {
-  isLoading: boolean;
-  hasLogged: boolean;
-  login: () => void;
-  logout: () => void;
-};
 
 const AuthContext = React.createContext<ContextProps>(null);
 
@@ -23,14 +17,6 @@ export const AuthProvider = ({ children }) => {
   const [isLoading, setIsLoading] = React.useState<boolean>(true);
   const [hasLogged, setHasLogged] = React.useState<boolean>(false);
 
-  React.useEffect(() => {
-    (async () => {
-      const result = await getStorage("@has_logged");
-      setHasLogged(result === true);
-      setIsLoading(false);
-    })();
-  }, []);
-
   const contextValue = React.useMemo<ContextProps>(
     () => ({
       isLoading,
@@ -46,6 +32,14 @@ export const AuthProvider = ({ children }) => {
     }),
     [isLoading, hasLogged]
   );
+
+  React.useEffect(() => {
+    (async () => {
+      const result = await getStorage("@has_logged");
+      setHasLogged(result === true);
+      setIsLoading(false);
+    })();
+  }, []);
 
   return (
     <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>

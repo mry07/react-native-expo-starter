@@ -1,6 +1,7 @@
 import React from "react";
-import { ContextProps } from "./auth-context.types";
+import { ContextProps } from "./auth-context-types";
 import { getStorage, setStorage } from "../../utility/storage";
+import { userUseCase } from "../../core/di/injection";
 
 const AuthContext = React.createContext<ContextProps>(null);
 
@@ -21,12 +22,15 @@ export const AuthProvider = ({ children }) => {
     () => ({
       isLoading,
       hasLogged,
-      login: async () => {
+      login: async (username, password) => {
+        const { token } = await userUseCase.login(username, password);
         await setStorage("@has_logged", true);
+        await setStorage("@token", token);
         setHasLogged(true);
       },
       logout: async () => {
         await setStorage("@has_logged", false);
+        await setStorage("@token", null);
         setHasLogged(false);
       },
     }),

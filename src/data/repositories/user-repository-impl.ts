@@ -6,15 +6,17 @@ import UserLocalResource from "../resource/local/user-local-resource";
 const UserRepositoryImpl = (
   userLocalResource: UserLocalResource,
   userRemoteResource: UserRemoteResource
-): UserRepository => {
-  return {
-    getUsers: async (): Promise<UserEntity[]> => {
-      const data = userLocalResource.getUsers();
-      console.log(data);
+): UserRepository => ({
+  login: async (username, password) => {
+    return userRemoteResource.login(username, password);
+  },
 
-      return userRemoteResource.getUsers();
-    },
-  };
-};
+  getUsers: async (): Promise<UserEntity[]> => {
+    const data = await userLocalResource.getUsers();
+    console.log("data:", data);
+
+    return userRemoteResource.getUsers();
+  },
+});
 
 export default UserRepositoryImpl;

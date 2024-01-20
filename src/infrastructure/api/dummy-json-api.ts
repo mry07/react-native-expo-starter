@@ -8,4 +8,4 @@ export const dummyJsonApi = axios.create({
   },
 });
 
-export type JsonPlaceholderApi = typeof dummyJsonApi;
+export type DummyJsonInstance = typeof dummyJsonApi;

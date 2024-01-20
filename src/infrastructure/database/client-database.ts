@@ -8,12 +8,14 @@ class ClientDatabase {
     this.db = SQLite.openDatabase("react_native_expo_starter.db", "1.0");
 
     this.db.exec(migrations, false, (error, result) => {
-      if (error) {
-        console.log("sqlite error:", error);
-        return;
-      }
+      if (__DEV__) {
+        if (error) {
+          console.log("sqlite migration error:", error);
+          return;
+        }
 
-      console.log("result:", result);
+        console.log("sqlite migration:", result.length);
+      }
     });
   }
 

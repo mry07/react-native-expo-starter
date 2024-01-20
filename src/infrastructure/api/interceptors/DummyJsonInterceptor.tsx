@@ -1,4 +1,4 @@
-import { jsonPlaceholderApi } from "../json-placeholder-api";
+import { dummyJsonApi } from "../dummy-json-api";
 import { ApiRequestError, ApiResponseError } from "../../../utility/exception";
 import { AxiosResponse, InternalAxiosRequestConfig } from "axios";
 
@@ -88,8 +88,8 @@ const DummyJsonInterceptor = ({ children }) => {
 
   // render
 
-  jsonPlaceholderApi.interceptors.request.use(prerequest, errorPrerequest);
-  jsonPlaceholderApi.interceptors.response.use(tests, errorTests);
+  dummyJsonApi.interceptors.request.use(prerequest, errorPrerequest);
+  dummyJsonApi.interceptors.response.use(tests, errorTests);
 
   return children;
 };

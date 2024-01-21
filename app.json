@@ -1,8 +1,8 @@
 {
   "expo": {
-    "scheme": "expo-boilerplate",
-    "name": "expo-boilerplate",
-    "slug": "expo-boilerplate",
+    "scheme": "react-native-expo-starter",
+    "name": "react-native-expo-starter",
+    "slug": "react-native-expo-starter",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",

@@ -1,5 +1,5 @@
 import React from "react";
-import { ContextProps } from "./auth-context-types";
+import { ContextProps } from "./auth-context.types";
 import { getStorage, setStorage } from "../../utility/storage";
 import { userUseCase } from "../../core/di/injection";
 

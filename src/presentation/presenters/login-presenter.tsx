@@ -1,7 +1,7 @@
 import { router } from "expo-router";
 import { Alert } from "react-native";
 import { useAuth } from "../context/auth-context";
-import LoginPresenter from "./login-presenter-types";
+import LoginPresenter from "./login-presenter.types";
 
 export const useLoginPresenter = (): LoginPresenter => {
   const { login: loginAuth } = useAuth();

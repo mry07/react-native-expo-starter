@@ -1,6 +1,6 @@
 import fonts from "../../constant/fonts";
 import React from "react";
-import AppLayoutPresenter from "./root-layout-presenter-types";
+import AppLayoutPresenter from "./root-layout-presenter.types";
 import * as Font from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 import { fab } from "@fortawesome/free-brands-svg-icons";

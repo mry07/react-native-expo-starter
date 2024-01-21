@@ -1,6 +1,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-type Key = "@has_logged";
+type Key = "@has_logged" | "@token";
 
 export const setStorage = async (k: Key, v: any) => {
   try {

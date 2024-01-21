@@ -1,24 +1,13 @@
 import React from "react";
-import { AuthContext } from "../../src/context/auth";
 import { Redirect, Slot } from "expo-router";
-import { getStorage } from "../../src/utility/storage";
+import { MaterialIndicator } from "react-native-indicators";
+import { useAuth } from "../../src/presentation/context/auth-context";
 
 const AppLayout = () => {
-  const { hasLogged, setHasLogged } = React.useContext(AuthContext);
+  const { isLoading, hasLogged } = useAuth();
 
-  const [loading, setLoading] = React.useState(true);
-
-  React.useEffect(() => {
-    (async () => {
-      const hasLogged = await getStorage("@has_logged");
-
-      setLoading(false);
-      setHasLogged(hasLogged === true);
-    })();
-  }, []);
-
-  if (loading) {
-    return null;
+  if (isLoading) {
+    return <MaterialIndicator />;
   }
 
   if (!hasLogged) {

@@ -1,8 +1,5 @@
 import { userUseCase } from "../../core/di/injection";
-
-type HomePresenter = {
-  getData: () => void;
-};
+import HomePresenter from "./home-presenter-types";
 
 export const useHomePresenter = (): HomePresenter => {
   return {

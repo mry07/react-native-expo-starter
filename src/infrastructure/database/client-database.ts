@@ -1,13 +1,11 @@
 import * as SQLite from "expo-sqlite";
 import { migrations } from "./migrations";
 
-class ClientDatabase {
-  private db: SQLite.SQLiteDatabase;
+const ClientDatabase = (): SQLite.SQLiteDatabase => {
+  try {
+    const db = SQLite.openDatabase("react_native_expo_starter.db", "1.0");
 
-  constructor() {
-    this.db = SQLite.openDatabase("react_native_expo_starter.db", "1.0");
-
-    this.db.exec(migrations, false, (error, result) => {
+    db.exec(migrations, false, (error, result) => {
       if (__DEV__) {
         if (error) {
           console.log("sqlite migration error:", error);
@@ -17,11 +15,11 @@ class ClientDatabase {
         console.log("sqlite migration:", result.length);
       }
     });
-  }
 
-  getConnection() {
-    return this.db;
+    return db;
+  } catch (error) {
+    throw error;
   }
-}
+};
 
 export default ClientDatabase;

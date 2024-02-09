@@ -1,7 +1,9 @@
 import * as SQLite from "expo-sqlite";
 
 export const migrations: SQLite.Query[] = [
-  // user table
+  /**
+   * users table
+   */
   {
     sql: `
       CREATE TABLE IF NOT EXISTS users (
@@ -15,7 +17,9 @@ export const migrations: SQLite.Query[] = [
     args: [],
   },
 
-  // post table,
+  /**
+   * posts table
+   */
   {
     sql: `
       CREATE TABLE IF NOT EXISTS posts (

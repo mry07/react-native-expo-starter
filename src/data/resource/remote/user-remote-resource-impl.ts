@@ -1,12 +1,12 @@
 import UserEntity from "../../../core/entities/user-entity";
 import UserRemoteResource from "./user-remote-resource";
-import { JsonPlaceholderInstance } from "../../../infrastructure/api/json-placeholder-api";
 import { DummyJsonInstance } from "../../../infrastructure/api/dummy-json-api";
 import AuthResponse from "../../models/auth-response";
+import { AxiosInstance } from "axios";
 
 const UserRemoteResourceImpl = (
   dummyJsonApi: DummyJsonInstance,
-  jsonPlaceholderApi: JsonPlaceholderInstance
+  jsonPlaceholderApi: AxiosInstance
 ): UserRemoteResource => ({
   login: async (username: string, password: string): Promise<AuthResponse> => {
     try {

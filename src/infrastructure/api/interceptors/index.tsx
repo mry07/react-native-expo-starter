@@ -1,8 +1,4 @@
-import JsonPlaceholderInterceptor from "./JsonPlaceholderInterceptor";
-import { createComponentTree } from "../../../utility/component";
 import DummyJsonInterceptor from "./DummyJsonInterceptor";
+import { createComponentTree } from "../../../utility/component";
 
-export default createComponentTree(
-  JsonPlaceholderInterceptor,
-  DummyJsonInterceptor
-);
+export default createComponentTree(DummyJsonInterceptor);
